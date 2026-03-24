@@ -20,21 +20,16 @@
           <a-menu-item key="/levels">关卡</a-menu-item>
           <a-menu-item key="/playground">广场</a-menu-item>
           <a-menu-item>
-            <a href="https://www.code-nav.cn" target="_blank">
+            <a href="https://aus-hub.vercel.app/" target="_blank">
               <a-badge
                 count="new"
                 size="small"
                 :offset="[16, 24]"
                 color="green"
               >
-                编程导航
+                <GlobalOutlined />
+                Aus Hub
               </a-badge>
-            </a>
-          </a-menu-item>
-          <a-menu-item>
-            <a href="https://www.mianshiya.com" target="_blank">
-              <solution-outlined />
-              面试真题
             </a>
           </a-menu-item>
           <a-menu-item key="about">
@@ -46,12 +41,6 @@
               关于作者
             </span>
           </a-menu-item>
-          <a-menu-item>
-            <a href="https://github.com/liyupi/sql-mother" target="_blank">
-              <github-outlined />
-              代码开源，欢迎 star
-            </a>
-          </a-menu-item>
         </a-menu>
       </a-col>
     </a-row>
@@ -61,8 +50,14 @@
     <div class="footer">
       <p>
         <a-space size="middle">
-          <a href="https://www.code-nav.cn" target="_blank">编程导航</a>
-          <a href="https://www.laoyujianli.com" target="_blank">写简历神器</a>
+          <a href="https://aus-hub.vercel.app/" target="_blank"
+            >Australia Service Navigation</a
+          >
+          <a
+            href="https://www.linkedin.com/in/jingtaojosephliu/"
+            target="_blank"
+            >About Author</a
+          >
           <a href="https://www.mianshiya.com" target="_blank">面试刷题</a>
         </a-space>
       </p>
@@ -84,9 +79,8 @@
 import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import {
-  GithubOutlined,
   BookOutlined,
-  SolutionOutlined,
+  GlobalOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue';
 import AboutAuthorModal from './components/AboutAuthorModal.vue';

@@ -1,31 +1,42 @@
 <template>
   <a-modal
     v-model:visible="visible"
-    title="关于作者"
     :footer="null"
-    width="400px"
+    width="480px"
     centered
+    :closable="false"
+    class="about-author-modal"
     @cancel="handleClose"
   >
     <div class="about-content">
-      <div class="author-intro">
-        <h3>👨‍💻 程序员鱼皮</h3>
-        <p>全栈开发者、技术博主，帮助数万名学员进入互联网行业</p>
-      </div>
-      
-      <div class="benefits-section">
-        <h4>🎁 关注公众号获取</h4>
-        <p class="benefits-text">免费编程学习路线、简历模板、面试题解、项目教程、AI 知识库、交流群等丰富资源</p>
+      <div class="modal-header">
+        <div class="header-left">
+          <div class="icon-wrapper">
+            <UserOutlined class="header-icon" />
+          </div>
+          <h2 class="header-title">About Author</h2>
+        </div>
+        <button class="close-btn" @click="handleClose">
+          <CloseOutlined class="close-icon" />
+        </button>
       </div>
 
+      <div class="author-info">
+        <h3 class="author-name">Jingtao Liu</h3>
+        <p class="author-title">Experienced Senior Software Engineer</p>
+      </div>
+
+      <p class="author-desc">
+        A tech blogger who enjoys communicating and exchanging ideas with others
+        in the world of programming.
+      </p>
+
       <div class="qrcode-section">
+        <p class="qrcode-hint">
+          Please scan the QR code and follow me on LinkedIn.
+        </p>
         <div class="qrcode-container">
-          <img 
-            :src="qrcodeUrl" 
-            alt="鱼皮公众号二维码" 
-            class="qrcode-image"
-          />
-          <p class="qrcode-text">扫码关注「程序员鱼皮」</p>
+          <img :src="qrcodeUrl" alt="LinkedIn QR Code" class="qrcode-image" />
         </div>
       </div>
     </div>
@@ -33,25 +44,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import qrcodeImage from '../assets/qrcode-mpcoder_yupi.jpg';
+import { computed } from "vue";
+import { UserOutlined, CloseOutlined } from "@ant-design/icons-vue";
+import qrcodeImage from "../assets/joseph-qrcode.jpeg";
 
 interface Props {
   visible: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  visible: false
+  visible: false,
 });
 
-const emit = defineEmits(['update:visible']);
+const emit = defineEmits(["update:visible"]);
 
 const visible = computed({
   get: () => props.visible,
-  set: (value: boolean) => emit('update:visible', value)
+  set: (value: boolean) => emit('update:visible', value),
 });
 
-const qrcodeUrl = ref(qrcodeImage);
+const qrcodeUrl = qrcodeImage;
 
 const handleClose = () => {
   visible.value = false;
@@ -63,70 +75,119 @@ const handleClose = () => {
   padding: 0;
 }
 
-.author-intro {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #0b4a7a, #08345a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon {
+  color: white;
+  font-size: 18px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #111418;
+  margin: 0;
+}
+
+.close-btn {
+  color: #617589;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  color: #0b4a7a;
+  background: #f5f5f5;
+}
+
+.close-icon {
+  font-size: 20px;
+}
+
+.author-info {
+  text-align: center;
   margin-bottom: 16px;
 }
 
-.author-intro h3 {
-  margin-bottom: 8px;
-  font-size: 15px;
+.author-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0b4a7a;
+  margin: 0 0 4px 0;
 }
 
-.author-intro p {
-  color: #666;
-  line-height: 1.5;
-  margin: 0;
+.author-title {
   font-size: 14px;
-}
-
-.benefits-section {
-  margin-bottom: 16px;
-}
-
-.benefits-section h4 {
-  margin-bottom: 8px;
-  font-size: 15px;
-}
-
-.benefits-text {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.4;
+  font-weight: 500;
+  color: #617589;
   margin: 0;
+}
+
+.author-desc {
+  text-align: center;
+  font-size: 14px;
+  color: #5f6b79;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
 }
 
 .qrcode-section {
+  background: linear-gradient(to right, #f0f4f8, #e8f0fe);
+  border-radius: 12px;
+  padding: 16px;
   text-align: center;
+}
+
+.qrcode-hint {
+  font-size: 14px;
+  color: #617589;
+  font-weight: 500;
+  margin: 0 0 12px 0;
 }
 
 .qrcode-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 .qrcode-image {
   width: 160px;
   height: 160px;
-  border: 1px solid #e8e8e8;
   border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
   object-fit: cover;
 }
 
-.qrcode-text {
-  margin-top: 8px;
-  color: #666;
-  font-size: 13px;
-}
-
 @media (max-width: 768px) {
-  .about-content {
-    padding: 0 8px;
-  }
-  
   .qrcode-image {
     width: 140px;
     height: 140px;
   }
 }
-</style> 
+</style>
