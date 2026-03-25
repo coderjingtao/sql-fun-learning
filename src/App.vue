@@ -16,9 +16,9 @@
           :style="{ lineHeight: '64px' }"
           @click="doClickMenu"
         >
-          <a-menu-item key="/learn">学习</a-menu-item>
-          <a-menu-item key="/levels">关卡</a-menu-item>
-          <a-menu-item key="/playground">广场</a-menu-item>
+          <a-menu-item key="/learn">Learn</a-menu-item>
+          <a-menu-item key="/levels">Levels</a-menu-item>
+          <a-menu-item key="/playground">Playground</a-menu-item>
           <a-menu-item>
             <a href="https://aus-hub.vercel.app/" target="_blank">
               <a-badge
@@ -38,7 +38,7 @@
               style="cursor: pointer; display: inline-block; width: 100%"
             >
               <user-outlined />
-              关于作者
+              About
             </span>
           </a-menu-item>
         </a-menu>
@@ -58,7 +58,7 @@
             target="_blank"
             >About Author</a
           >
-          <a href="https://www.mianshiya.com" target="_blank">面试刷题</a>
+          <RouterLink to="/">SQL Practice</RouterLink>
         </a-space>
       </p>
       <p>
@@ -70,7 +70,7 @@
     </div>
     <a-back-top :style="{ right: '24px' }" />
 
-    <!-- 关于作者弹窗组件 -->
+    <!-- About Author Modal Component -->
     <AboutAuthorModal v-model:visible="aboutModalVisible" />
   </div>
 </template>
@@ -89,7 +89,7 @@ const route = useRoute();
 const router = useRouter();
 const selectedKeys = computed(() => [route.path]);
 
-// 获取当前年份
+// Get current year
 const currentYear = computed(() => new Date().getFullYear());
 
 const aboutModalVisible = ref(false);

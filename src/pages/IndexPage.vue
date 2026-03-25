@@ -14,7 +14,7 @@
         <a-collapse v-model:active-key="activeKeys" style="margin-top: 16px">
           <a-collapse-panel
             key="result"
-            header="查看执行结果"
+            header="View Results"
             class="result-collapse-panel"
           >
             <sql-result
@@ -26,17 +26,17 @@
               style="margin-top: 16px"
             />
           </a-collapse-panel>
-          <a-collapse-panel v-if="level.hint" key="hint" header="查看提示">
+          <a-collapse-panel v-if="level.hint" key="hint" header="View Hint">
             <p>{{ level.hint }}</p>
           </a-collapse-panel>
-          <a-collapse-panel key="ddl" header="查看建表语句">
+          <a-collapse-panel key="ddl" header="View DDL">
             <code-editor
               :init-value="level.initSQL"
               :editor-style="{ minHeight: '400px' }"
               read-only
             />
           </a-collapse-panel>
-          <a-collapse-panel key="answer" header="查看答案">
+          <a-collapse-panel key="answer" header="View Answer">
             <code-editor
               :init-value="level.answer"
               :editor-style="{ minHeight: '400px' }"
@@ -81,14 +81,14 @@ const defaultActiveKeys = ["result"];
 const activeKeys = ref([...defaultActiveKeys]);
 
 /**
- * 切换关卡时，重置状态
+ * Reset state when switching levels
  */
 watch([level], () => {
   activeKeys.value = [...defaultActiveKeys];
 });
 
 /**
- * 执行结果
+ * Execution Result
  * @param sql
  * @param res
  * @param answerRes

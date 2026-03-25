@@ -1,7 +1,7 @@
 import { QueryExecResult } from "sql.js";
 
 /**
- * 结果状态枚举
+ * Result status enum
  */
 export const RESULT_STATUS_ENUM = {
   DEFAULT: -1,
@@ -10,18 +10,18 @@ export const RESULT_STATUS_ENUM = {
 };
 
 /**
- * 结果状态信息映射
+ * Result status info map
  */
 export const RESULT_STATUS_INFO_MAP = {
-  "-1": "未执行",
-  0: "❌ 错误",
-  1: "✅ 正确",
+  "-1": "Not Executed",
+  0: "❌ Error",
+  1: "✅ Correct",
 };
 
 /**
- * 判断结果是否正确
- * @param result 用户结果
- * @param answerResult 答案结果
+ * Check if result is correct
+ * @param result User result
+ * @param answerResult Answer result
  */
 export const checkResult = (
   result: QueryExecResult[],
@@ -30,13 +30,13 @@ export const checkResult = (
   if (!result?.[0] || !answerResult?.[0]) {
     return RESULT_STATUS_ENUM.ERROR;
   }
-  // 列名需要一致
+  // Column names must match
   const resultColumns = result[0].columns;
   const answerResultColumns = answerResult[0].columns;
   if (JSON.stringify(resultColumns) !== JSON.stringify(answerResultColumns)) {
     return RESULT_STATUS_ENUM.ERROR;
   }
-  // 数据需要一致
+  // Data must match
   const resultValues = result[0].values;
   const answerResultValues = answerResult[0].values;
   if (JSON.stringify(resultValues) === JSON.stringify(answerResultValues)) {

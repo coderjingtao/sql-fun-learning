@@ -3,10 +3,10 @@
     <div ref="editorRef" :style="editorStyle" />
     <a-space :size="16" style="margin-top: 16px">
       <a-button type="primary" style="width: 180px" @click="doSubmit">
-        运行
+        Run
       </a-button>
-      <a-button @click="doFormat">格式化</a-button>
-      <a-button @click="doReset">重置</a-button>
+      <a-button @click="doFormat">Format</a-button>
+      <a-button @click="doReset">Reset</a-button>
     </a-space>
   </div>
 </template>
@@ -56,19 +56,19 @@ const editorRef = ref<HTMLElement>();
 const db = ref();
 
 watchEffect(async () => {
-  // 初始化 / 更新默认 SQL
+  // Initialize / Update default SQL
   if (inputEditor.value) {
     toRaw(inputEditor.value).setValue(
-      "-- 请在此处输入 SQL\n" + level.value.defaultSQL
+      "-- Enter SQL here\n" + level.value.defaultSQL
     );
   }
-  // 初始化 / 更新 DB
+  // Initialize / Update DB
   db.value = await initDB(level.value.initSQL);
   doSubmit();
 });
 
 /**
- * SQL 格式化
+ * SQL Format
  */
 const doFormat = () => {
   if (!inputEditor.value) {
@@ -81,7 +81,7 @@ const doFormat = () => {
 };
 
 /**
- * 重置
+ * Reset
  */
 const doReset = () => {
   if (inputEditor.value) {
@@ -91,7 +91,7 @@ const doReset = () => {
 };
 
 /**
- * 提交结果
+ * Submit Result
  */
 const doSubmit = () => {
   if (!inputEditor.value) {
@@ -102,17 +102,17 @@ const doSubmit = () => {
   try {
     const result = runSQL(db.value, inputStr);
     const answerResult = runSQL(db.value, level.value.answer);
-    // 向外层传递结果
+    // Pass result to outer layer
     onSubmit?.value(inputStr, result, answerResult);
   } catch (error: any) {
-    message.error("语句错误，" + error.message);
-    // 向外层传递结果
+    message.error("Statement error, " + error.message);
+    // Pass result to outer layer
     onSubmit?.value(inputStr, [], [], error.message);
   }
 };
 
 onMounted(async () => {
-  // 初始化代码编辑器
+  // Initialize code editor
   if (editorRef.value) {
     const initValue = "";
     inputEditor.value = monaco.editor.create(editorRef.value, {
@@ -126,8 +126,8 @@ onMounted(async () => {
         enabled: false,
       },
     });
-    // 自动保存草稿
-    // 暂不开启，刷新后恢复当前关卡的默认 SQL
+    // Auto save draft
+    // Disabled for now, restore default SQL for current level after refresh
     // setInterval(() => {
     //   if (inputEditor.value) {
     //     localStorage.setItem("draft", toRaw(inputEditor.value).getValue());
@@ -137,7 +137,7 @@ onMounted(async () => {
 });
 
 /**
- * 释放资源
+ * Release resources
  */
 onUnmounted(() => {
   if (inputEditor.value) {

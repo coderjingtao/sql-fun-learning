@@ -1,20 +1,20 @@
 <template>
   <div id="levelsPage">
-    <!-- 页面标题 -->
+    <!-- Page Title -->
     <div class="page-header">
-      <h1 class="page-title">⚔️ 关卡挑战</h1>
-      <p class="page-description">选择你的挑战关卡，开始SQL学习之旅！</p>
+      <h1 class="page-title">⚔️ Level Challenges</h1>
+      <p class="page-description">Select your challenge level and start your SQL learning journey!</p>
     </div>
 
-    <!-- 关卡内容 -->
+    <!-- Level Content -->
     <a-row :gutter="[24, 24]" class="levels-content">
-      <!-- 主线关卡 -->
+      <!-- Main Levels -->
       <a-col :xs="24" :lg="12">
         <div class="level-section">
           <div class="section-header">
             <h2 class="section-title">
-              🎯 主线关卡
-              <a-tag color="blue" size="small">基础必修</a-tag>
+              🎯 Main Levels
+              <a-tag color="blue" size="small">Basic Practice</a-tag>
             </h2>
           </div>
           
@@ -29,25 +29,25 @@
               <div class="level-content">
                 <h3 class="level-title">{{ level.title }}</h3>
                 <div class="level-meta">
-                  <a-tag color="blue" size="small">主线</a-tag>
-                  <span class="level-difficulty">⭐ 基础</span>
+                  <a-tag color="blue" size="small">Main</a-tag>
+                  <span class="level-difficulty">⭐ Basic</span>
                 </div>
               </div>
               <div class="level-action">
-                <a-button type="primary" size="small">挑战</a-button>
+                <a-button type="primary" size="small">Challenge</a-button>
               </div>
             </div>
           </div>
         </div>
       </a-col>
 
-      <!-- 自定义关卡 -->
+      <!-- Custom Levels -->
       <a-col :xs="24" :lg="12">
         <div class="level-section">
           <div class="section-header">
             <h2 class="section-title">
-              🌟 自定义关卡
-              <a-tag color="orange" size="small">实战进阶</a-tag>
+              🌟 Custom Levels
+              <a-tag color="orange" size="small">Advanced Practice</a-tag>
             </h2>
           </div>
           
@@ -61,12 +61,12 @@
               <div class="level-content">
                 <h3 class="level-title">{{ level.title }}</h3>
                 <div class="level-meta">
-                  <a-tag color="orange" size="small">实战</a-tag>
+                  <a-tag color="orange" size="small">Practice</a-tag>
                   <span class="level-difficulty">{{ getDifficultyText(level.difficulty) }}</span>
                 </div>
               </div>
               <div class="level-action">
-                <a-button type="primary" size="small">挑战</a-button>
+                <a-button type="primary" size="small">Challenge</a-button>
               </div>
             </div>
           </div>
@@ -91,13 +91,13 @@ const goToLevel = (levelKey: string) => {
 const getDifficultyText = (difficulty?: number) => {
   switch (difficulty) {
     case 1:
-      return '⭐ 简单';
+      return '⭐ Easy';
     case 2:
-      return '⭐⭐ 中等';
+      return '⭐⭐ Medium';
     case 3:
-      return '⭐⭐⭐ 困难';
+      return '⭐⭐⭐ Hard';
     default:
-      return '⭐⭐ 中等';
+      return '⭐⭐ Medium';
   }
 };
 </script>
@@ -109,26 +109,29 @@ const getDifficultyText = (difficulty?: number) => {
   padding: 0 16px;
 }
 
-/* 页面标题 */
+/* Page Title */
 .page-header {
   text-align: center;
   margin-bottom: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #0b4a7a 100%);
+  border-radius: 8px;
 }
 
 .page-title {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .page-description {
   font-size: 14px;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
 
-/* 关卡内容 */
+/* Level Content */
 .levels-content {
   margin-bottom: 24px;
 }
@@ -139,6 +142,9 @@ const getDifficultyText = (difficulty?: number) => {
 
 .section-header {
   margin-bottom: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #0b4a7a 100%);
+  border-radius: 8px;
 }
 
 .section-title {
@@ -148,10 +154,10 @@ const getDifficultyText = (difficulty?: number) => {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 0;
-  color: #1f2937;
+  color: #ffffff;
 }
 
-/* 关卡网格 */
+/* Level Grid */
 .level-grid {
   display: flex;
   flex-direction: column;
@@ -184,7 +190,7 @@ const getDifficultyText = (difficulty?: number) => {
   border-color: #f59e0b;
 }
 
-/* 主线关卡样式 */
+/* Main Level Style */
 .main-level .level-number {
   width: 32px;
   height: 32px;
@@ -200,7 +206,7 @@ const getDifficultyText = (difficulty?: number) => {
   flex-shrink: 0;
 }
 
-/* 自定义关卡样式 */
+/* Custom Level Style */
 .custom-level .level-icon {
   width: 32px;
   height: 32px;
@@ -221,7 +227,7 @@ const getDifficultyText = (difficulty?: number) => {
   font-size: 15px;
   font-weight: 600;
   margin: 0 0 6px 0;
-  color: #1f2937;
+  color: #111418;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -236,7 +242,7 @@ const getDifficultyText = (difficulty?: number) => {
 
 .level-difficulty {
   font-size: 12px;
-  color: #6b7280;
+  color: #5f6b79;
 }
 
 .level-action {
@@ -244,7 +250,7 @@ const getDifficultyText = (difficulty?: number) => {
   flex-shrink: 0;
 }
 
-/* 响应式设计 */
+/* Responsive Design */
 @media (max-width: 768px) {
   #levelsPage {
     padding: 0 12px;
@@ -294,7 +300,7 @@ const getDifficultyText = (difficulty?: number) => {
   }
 }
 
-/* 大屏优化 */
+/* Large Screen Optimization */
 @media (min-width: 1200px) {
   .level-grid {
     max-height: 70vh;
@@ -321,28 +327,20 @@ const getDifficultyText = (difficulty?: number) => {
   }
 }
 
-/* 暗色模式适配 */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   .level-card {
     background: #1f2937;
     border-color: #374151;
     color: #f9fafb;
   }
-  
+
   .level-title {
-    color: #f9fafb;
-  }
-  
-  .section-title {
-    color: #f9fafb;
-  }
-  
-  .page-title {
     color: #f9fafb;
   }
 }
 
-/* 触摸设备优化 */
+/* Touch Device Optimization */
 @media (hover: none) {
   .level-card {
     transition: none;
