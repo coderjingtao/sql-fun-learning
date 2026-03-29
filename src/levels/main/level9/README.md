@@ -1,52 +1,54 @@
-# 基础语法 - 条件查询 - 逻辑运算
+## 9. Basic Syntax - Conditional Query - Logical Operators
 
-## 教程
+### Tutorial
 
-逻辑运算是一种在条件查询中使用的运算符，它允许我们结合多个条件来过滤出符合特定条件的数据。
+Logical operators are operators used in conditional queries that allow us to combine multiple conditions to filter data meeting specific criteria.
 
-在逻辑运算中，常用的运算符有：
+Common logical operators include:
 
-- AND：表示逻辑与，要求同时满足多个条件，才返回 true。
-- OR：表示逻辑或，要求满足其中任意一个条件，就返回 true。
-- NOT：表示逻辑非，用于否定一个条件（本来是 true，用了 not 后转为 false）
-
-
-
-## 示例
-假设有一张名为`employees`的数据表，它存储了员工信息，包括员工姓名（name）、年龄（age）、工资（salary）等：
-
-数据表`employees`：
-
-| name | age  | salary |
-| ---- | ---- | ------ |
-| 张三 | 25   | 10000  |
-| 李四 | 30   | 12000  |
-| 李五 | 28   | 15000  |
-| 小明 | 22   | 8000   |
+- AND: Represents logical AND, requires multiple conditions to be satisfied simultaneously to return true.
+- OR: Represents logical OR, requires any one of the conditions to be satisfied to return true.
+- NOT: Represents logical NOT, used to negate a condition (originally true, becomes false after NOT)
 
 
 
-现在，我们使用逻辑运算来找出姓名中包含关键字 "李" **且** 年龄小于 30 岁的员工信息：
+### Example
+
+Assume there is a data table named `employees`, which stores employee information, including employee name (name), age (age), salary (salary), etc.:
+
+Data table `employees`:
+
+| name  | age | salary |
+| ----- | --- | ------ |
+| Tom   | 25  | 10000  |
+| Lucy  | 30  | 12000  |
+| Jack  | 28  | 15000  |
+| Steve | 22  | 8000   |
+
+
+
+Now, let's use logical operators to find employee information where the name contains the keyword "Jack" **AND** age is less than 30:
 
 ```sql
--- SQL查询语句
-select name, age, salary from employees where name like '%李%' and age < 30;
+-- SQL query statement
+select name, age, salary from employees where name like '%Jack%' and age < 30;
 ```
 
 
 
-查询结果：
+Query result:
 
-| name | age  | salary |
-| ---- | ---- | ------ |
-| 李五 | 28   | 15000  |
-
-
-
-上述查询语句中，我们使用 and 逻辑与运算得到了符合要求的员工信息。
+| name | age | salary |
+| ---- | --- | ------ |
+| Jack | 28  | 15000  |
 
 
 
-## 题目
+In the above query statement, we used the AND logical operator to obtain employee information that meets the requirements.
 
-请编写一条 SQL 查询语句，从名为 `student` 的数据表中选择出所有学生的姓名（name）、成绩（score），要求学生的姓名包含 "李"，或者成绩（score）大于 500。
+
+
+### Exercise
+
+Please write an SQL query statement to select the name and score of all students from the data table named `student`, where the student name contains "J" OR the score is greater than 500.
+

@@ -1,43 +1,44 @@
-# 基础语法 - 条件查询 - 空值
+## 7. Basic Syntax - Conditional Query - NULL Values
 
-## 教程
+### Tutorial
 
-在数据库中，有时候数据表的某些字段可能没有值，即为空值（NULL）。
+In databases, sometimes certain fields in a data table may not have a value, which is called a NULL value.
 
-空值表示该字段的值是未知的、不存在的或者没有被填写的。在SQL查询中，我们可以使用 "IS NULL" 和 "IS NOT NULL" 来判断字段是否为空值或非空值。
+A NULL value indicates that the field's value is unknown, does not exist, or has not been filled in. In SQL queries, we can use "IS NULL" and "IS NOT NULL" to determine whether a field is NULL or non-NULL.
 
-空值的应用场景：假设你是一名考试老师，而数据表中的数据就像是你学生们的考试成绩。当某个学生没有参加考试或者成绩尚未出来时，他的考试成绩就是空值。你可以使用 "IS NULL" 来找出没有参加考试的学生，使用 "IS NOT NULL" 来找出已经有成绩的学生。
+Application scenario for NULL values: Imagine you are an exam teacher, and the data in the table represents your students' exam scores. When a student has not taken the exam or their score has not yet been released, their exam score is NULL. You can use "IS NULL" to find students who haven't taken the exam, and use "IS NOT NULL" to find students who already have scores.
 
 
 
-## 示例
+### Example
 
-假设有一张名为 `employees` 的数据表，它存储了员工信息，包括员工姓名（name）、年龄（age）、入职日期（hire_date）等：
+Assume there is a data table named `employees`, which stores employee information, including employee name (name), age (age), hire date (hire_date), etc.:
 
-数据表 `employees` ：
+Data table `employees`:
 
 |   name   | age | hire_date  |
 |----------|-----|------------|
-|   小明   |  25 | 2020-01-01 |
-|   小红   |  30 | 2020-02-15 |
-|   小李   |  28 |   NULL     |
-|   小张   | NULL| 2020-03-20 |
+|   Tom    |  25 | 2020-01-01 |
+|   Lucy   |  30 | 2020-02-15 |
+|   Jack   |  28 |   NULL     |
+|   Steve  | NULL| 2020-03-20 |
 
-现在，我们使用 "IS NULL" 来查询出入职日期未填写的员工：
+Now, let's use "IS NULL" to query employees whose hire date is not filled in:
 
 ```sql
--- SQL查询语句
+-- SQL query statement
 select name, age from employees where hire_date is null;
 ```
 
-查询结果：
+Query result:
 
 | name | age  |
 | ---- | ---- |
-| 小李 | 28   |
+| Jack | 28   |
 
 
 
-## 题目
+### Exercise
 
-请编写一条 SQL 查询语句，从名为 `student` 的数据表中选择出所有学生的姓名（name）、年龄（age）和成绩（score），要求学生年龄不为空值。
+Please write an SQL query statement to select the name, age, and score of all students from the data table named `student`, where the student age is not NULL.
+

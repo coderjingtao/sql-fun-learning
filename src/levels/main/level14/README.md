@@ -1,18 +1,18 @@
-# 函数 - 时间函数
+## 14. Functions - Time Functions
 
-## 教程
-在 SQL 中，时间函数是用于处理日期和时间的特殊函数。它们允许我们在查询中操作和处理日期、时间、日期时间数据，从而使得在数据库中进行时间相关的操作变得更加方便和灵活。
+### Tutorial
+In SQL, time functions are special functions used to handle dates and times. They allow us to manipulate and process date, time, and datetime data in queries, making time-related operations in databases more convenient and flexible.
 
-常用的时间函数有：
+Common time functions include:
 
-- DATE：获取当前日期
-- DATETIME：获取当前日期时间
-- TIME：获取当前时间
+- DATE: Get the current date
+- DATETIME: Get the current datetime
+- TIME: Get the current time
 
 
 
-## 示例
-假设有一个订单表 `orders`，包含以下字段：`order_id`（订单号）、`order_date`（下单日期）、`order_time`（下单时间）。数据如下：
+### Example
+Assume there is an orders table `orders`, containing the following fields: `order_id`, `order_date`, `order_time`. Data as follows:
 
 | order_id | order_date  | order_time |
 |---------|-------------|------------|
@@ -23,24 +23,24 @@
 
 
 
-使用时间函数获取当前日期、当前日期时间和当前时间：
+Use time functions to get the current date, current datetime, and current time:
 
 ```sql
--- 获取当前日期
+-- Get current date
 SELECT DATE() AS current_date;
 
--- 获取当前日期时间
+-- Get current datetime
 SELECT DATETIME() AS current_datetime;
 
--- 获取当前时间
+-- Get current time
 SELECT TIME() AS current_time;
 ```
 
 
 
-查询结果：
+Query result:
 
-> 为了方便对比，放到同一个表格
+> For easy comparison, put in the same table
 
 | current_date | current_datetime       | current_time |
 |--------------|------------------------|--------------|
@@ -48,16 +48,17 @@ SELECT TIME() AS current_time;
 
 
 
-> 注意，这里的日期、日期时间和时间将根据当前的系统时间来生成，实际运行结果可能会因为当前时间而不同。
+> Note: The date, datetime, and time here will be generated based on the current system time. Actual results may vary depending on the current time.
 
 
 
-还有很多时间函数，比如计算两个日期的相差天数、获取当前日期对应的毫秒数等，实际运用时自行查阅即可，此处不做赘述。
+There are many other time functions, such as calculating the number of days between two dates, getting the milliseconds corresponding to the current date, etc. You can look them up yourself when needed. They will not be described in detail here.
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student`，包含以下字段：`name`（姓名）、`age`（年龄）。
+Assume there is a student table `student`, containing the following fields: `name`, `age`.
 
-请你编写一个 SQL 查询，展示所有学生的姓名（name）和当前日期（列名为 "当前日期"）。
+Please write an SQL query to display all students' names (name) and the current date (column alias as "current_date").
+

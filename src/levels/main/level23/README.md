@@ -1,18 +1,18 @@
-# 查询进阶 - 子查询
+## 23. Advanced Query - Subquery
 
-## 教程
-子查询是指在一个查询语句内部 **嵌套** 另一个完整的查询语句，内层查询被称为子查询。子查询可以用于获取更复杂的查询结果或者用于过滤数据。
+### Tutorial
+A subquery refers to **nesting** a complete query statement inside another query statement. The inner query is called a subquery. Subqueries can be used to obtain more complex query results or to filter data.
 
-当执行包含子查询的查询语句时，数据库引擎会首先执行子查询，然后将其结果作为条件或数据源来执行外层查询。
+When executing a query statement containing a subquery, the database engine will first execute the subquery, then use its result as a condition or data source to execute the outer query.
 
-打个比方，子查询就像是在一个盒子中的盒子，外层查询是大盒子，内层查询是小盒子。执行查询时，我们首先打开小盒子获取结果，然后将小盒子的结果放到大盒子中继续处理。
+As an analogy, a subquery is like a box within a box. The outer query is the big box, and the inner query is the small box. When executing the query, we first open the small box to get the result, then put the small box's result into the big box to continue processing.
 
 
 
-## 示例
-假设我们有以下两个数据表：`orders` 和 `customers`，分别包含订单信息和客户信息。
+### Example
+Assume we have the following two data tables: `orders` and `customers`, containing order information and customer information respectively.
 
-orders 表：
+orders table:
 
 | order_id | customer_id | order_date | total_amount |
 |----------|-------------|------------|--------------|
@@ -23,7 +23,7 @@ orders 表：
 
 
 
-customers 表：
+customers table:
 
 | customer_id | name     | city       |
 |-------------|----------|------------|
@@ -33,14 +33,14 @@ customers 表：
 
 
 
-现在，我们希望查询出有订单总金额 > 200 的客户的姓名和城市信息，示例 SQL 如下：
+Now, we want to query the name and city information of customers whose total order amount > 200. Example SQL as follows:
 
 ```sql
--- 主查询
+-- Main query
 SELECT name, city
 FROM customers
 WHERE customer_id IN (
-    -- 子查询
+    -- Subquery
     SELECT DISTINCT customer_id
     FROM orders
     WHERE total_amount > 200
@@ -49,9 +49,9 @@ WHERE customer_id IN (
 
 
 
-在上述 SQL 中，先通过子查询从订单表中过滤查询出了符合条件的客户 id，然后再根据客户 id 到客户信息表中查询客户信息，这样可以少查询很多客户信息数据。
+In the above SQL, we first filter and query the eligible customer IDs from the orders table through the subquery, then query the customer information from the customer information table based on the customer IDs. This way we can query much less customer information data.
 
-上述语句的查询结果：
+Query result of the above statement:
 
 | name    | city        |
 | ------- | ----------- |
@@ -60,9 +60,9 @@ WHERE customer_id IN (
 
 
 
+### Exercise
 
-## 题目
-假设有一个学生表 `student`，包含以下字段：`id`（学号）、`name`（姓名）、`age`（年龄）、`score`（分数）、`class_id`（班级编号）。还有一个班级表 `class`，包含以下字段：`id`（班级编号）、`name`（班级名称）。
+Assume there is a student table `student`, containing the following fields: `id` (student ID), `name` (name), `age` (age), `score` (score), `class_id` (class ID). There is also a class table `class`, containing the following fields: `id` (class ID), `name` (class name).
 
-请你编写一个 SQL 查询，使用子查询的方式来获取存在对应班级的学生的所有数据，返回学生姓名（`name`）、分数（`score`）、班级编号（`class_id`）字段。
+Please write an SQL query using a subquery to get all data of students who have a corresponding class, returning student name (`name`), score (`score`), class ID (`class_id`) fields.
 

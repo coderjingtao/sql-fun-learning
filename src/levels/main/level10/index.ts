@@ -3,11 +3,11 @@ import sql from "./createTable.sql?raw";
 
 export default {
   key: "level10",
-  title: "基础语法 - 去重",
+  title: "Basic Syntax - Deduplication",
   initSQL: sql,
   content: md,
   defaultSQL: "select * from student",
   answer: "select distinct class_id, exam_num from student;",
-  hint: "需要使用多字段去重",
+  hint: "Need to use multi-field deduplication",
   type: "main",
 } as LevelType;

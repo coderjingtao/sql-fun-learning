@@ -1,20 +1,20 @@
-# 基础语法 - 查询 - 别名
+## 3. Basic Syntax - Query - Alias
 
-## 教程
+### Tutorial
 
-别名是为数据表的列或查询结果中的字段取一个临时的、可读性更高的名字，使得查询结果更加直观和易读。
+An alias is a temporary, more readable name given to a column in a data table or a field in query results, making the results more intuitive and easier to read.
 
-让我们用一个形象的比喻来理解 "别名"：假设你是一名团队领导，你的团队有很多成员，每个成员都有自己的名字。为了更好地管理团队，你决定给每个成员都取一个昵称，让团队的交流更加便捷。这个昵称就是 "别名"。它并不改变成员的真实信息，只是提供了一个便于团队内部交流的称呼。
+Let's use an analogy to understand "alias": Imagine you are a team leader, and your team has many members, each with their own name. To better manage the team, you decide to give each member a nickname to make communication within the team more convenient. This nickname is an "alias". It doesn't change the member's real information, but simply provides a convenient way to address them within the team.
 
-在 SQL 查询中，我们可以使用别名语法 `{原始字段名} as {别名}` 来为查询结果的列名取一个便于理解的名称。通过使用别名，我们可以更直观地知道查询结果中每一列的含义，方便阅读和使用。
+In SQL queries, we can use the alias syntax `{original_field_name} as {alias}` to give the column names in query results a more understandable name. By using aliases, we can more intuitively understand the meaning of each column in the query results, making them easier to read and use.
 
 
 
-## 示例
+### Example
 
-假设有一张名为 `employees` 的数据表，它存储了团队成员的信息，包括姓名（name）、年龄（age）、职位（position）等：
+Assume there is a data table named `employees`, which stores team member information, including name, age, position, etc.:
 
-数据表 `employees`：
+Data table `employees`:
 
 |   name   | age | position      |
 |----------|-----|---------------|
@@ -23,20 +23,20 @@
 |   Bob    | 32  | Product Designer|
 |   Kate   | 26  | Marketing Specialist|
 
-现在，我们使用 "别名" 来获取所有团队成员的姓名（name）和职位（position）信息，并为它们取别名为 `员工姓名` 和 `职位名称`：
+Now, let's use "alias" to get the name and position information of all team members, and give them aliases as `employee_name` and `job_title`:
 
 ```sql
--- SQL查询语句
-select name as 员工姓名, position as 职位名称 from employees;
+-- SQL query statement
+select name as employee_name, position as job_title from employees;
 ```
 
-> 上述代码中的 as 也可以省略，比如 `name 员工姓名` 也是 ok 的。
+> The `as` keyword in the above code can also be omitted. For example, `name employee_name` is also valid.
 
 
 
-查询结果，注意表格头的列名从英文变为了中文：
+Query result - note how the column headers changed from the original field names to the aliases:
 
-|   员工姓名   | 职位名称            |
+|   employee_name   | job_title            |
 |---------------|-------------------|
 |   John        | Project Manager    |
 |   Alice       | Software Engineer  |
@@ -45,11 +45,11 @@ select name as 员工姓名, position as 职位名称 from employees;
 
 
 
-通过上述 SQL 查询语句，我们得到了团队成员名单表中所有成员的姓名和职位信息，并通过别名让查询结果更加易读和直观。
+Through the above SQL query statement, we obtained the name and position information of all members in the team roster, and made the query results more readable and intuitive by using aliases.
 
 
 
-## 题目
+### Exercise
 
-请编写一条 SQL 查询语句，从名为 `student` 的数据表中选择出所有学生的姓名（name）和年龄（age）信息，并为它们取别名为 `学生姓名` 和 `学生年龄`。
+Please write an SQL query statement to select the name and age information of all students from the data table named `student`, and give them aliases as `student_name` and `student_age`.
 

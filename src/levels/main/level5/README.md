@@ -1,30 +1,30 @@
-# 基础语法 - 条件查询 - where
+## 5. Basic Syntax - Conditional Query - WHERE
 
-## 教程
+### Tutorial
 
-在前面的教程中，我们每次都是对整个表的所有数据行进行查询。但有的时候，我们只想取表中的部分数据，怎么办呢？
+In previous tutorials, we always queried all data rows in the entire table. But sometimes, we only want to retrieve partial data from the table. What should we do?
 
-这时，我们就可以使用条件查询语法。通过条件查询，你可以从数据库中筛选出 **满足特定条件** 的数据行，而不是返回表中的所有数据。
+This is where we can use conditional query syntax. Through conditional queries, you can filter out data rows that **meet specific conditions** from the database, instead of returning all data in the table.
 
-主要使用 where 子句在查询中设置过滤条件，只有满足这些条件的数据行才会被返回。
+The main approach is to use the WHERE clause to set filter conditions in a query. Only data rows that meet these conditions will be returned.
 
-where 子句的语法如下：
+The syntax for the WHERE clause is as follows:
 
 ```sql
-SELECT 列1, 列2, ...
-FROM 表名
-WHERE 条件;
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
 ```
 
-其中，`列1, 列2, ...`是你要选择的列，可以是具体的列名，也可以是`*`表示选择所有列。`表名`是你要从中查询数据的表名。`条件`是指定的查询条件，可以使用比较运算符（如`=`、`<`、`>`等）、逻辑运算符（如`AND`、`OR`等）、IN 操作符、LIKE 操作符等来设置条件。
+Here, `column1, column2, ...` are the columns you want to select, which can be specific column names or `*` to select all columns. `table_name` is the name of the table from which you want to query data. `condition` is the specified query condition, which can be set using comparison operators (such as `=`, `<`, `>`, etc.), logical operators (such as `AND`, `OR`, etc.), IN operator, LIKE operator, etc.
 
 
 
-## 示例
+### Example
 
-让我们来看一个具体的SQL代码和结果示例，假设有一张名为`products`的数据表，它存储了产品信息，包括产品名称（name）、单价（price）、库存（stock）等：
+Let's look at a specific SQL code and result example. Assume there is a data table named `products`, which stores product information, including product name (name), unit price (price), stock (stock), etc.:
 
-数据表`products`：
+Data table `products`:
 
 |   name   | price | stock |
 |----------|-------|-------|
@@ -33,16 +33,16 @@ WHERE 条件;
 |   C      | 15.00 |   20  |
 |   D      | 25.00 |   10  |
 
-现在，我们使用 "WHERE" 来筛选出库存小于等于 20 的产品：
+Now, let's use "WHERE" to filter out products with stock less than or equal to 20:
 
 ```sql
--- SQL查询语句
+-- SQL query statement
 select name, price, stock from products where stock <= 20;
 ```
 
 
 
-查询结果：
+Query result:
 
 |   name   | price | stock |
 |----------|-------|-------|
@@ -51,11 +51,11 @@ select name, price, stock from products where stock <= 20;
 
 
 
-通过上述 SQL 查询语句，我们筛选出了库存小于等于 20 的产品，从而得到了符合条件的产品信息。
+Through the above SQL query statement, we filtered out products with stock less than or equal to 20, and obtained the product information that meets the conditions.
 
 
 
-## 题目
+### Exercise
 
-请编写一条 SQL 查询语句，从名为`student` 的数据表中选择出所有学生的姓名（name）和成绩（score），要求学生姓名为 '鱼皮'。
+Please write an SQL query statement to select the name and score of all students from the data table named `student`, where the student name is 'Emma'.
 

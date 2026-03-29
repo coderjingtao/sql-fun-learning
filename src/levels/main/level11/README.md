@@ -1,70 +1,70 @@
-# 基础语法 - 排序
+## 11. Basic Syntax - Sorting
 
-## 教程
-在查询数据时，我们有时希望对结果按照某个字段的值进行排序，以便更好地查看数据。
+### Tutorial
+When querying data, we sometimes want to sort the results by the value of a specific field to better view the data.
 
-在 SQL 中，我们可以使用 `ORDER BY` 关键字来实现排序操作。`ORDER BY` 后面跟上需要排序的字段，可以选择升序（ASC）或降序（DESC）排列。
+In SQL, we can use the `ORDER BY` keyword to perform sorting operations. After `ORDER BY`, specify the field to sort by, and you can choose ascending (ASC) or descending (DESC) order.
 
 
 
-## 示例
-假设有一张名为 `students` 的数据表，它存储了学生信息，包括学生姓名（name）、年龄（age）和成绩（score）等：
+### Example
+Assume there is a data table named `students`, which stores student information, including student name (name), age (age), and score (score), etc.:
 
-数据表 `students` ：
+Data table `students`:
 
 |   name   | age | score |
 |----------|-----|-------|
-|   张三   |  18 |  90   |
-|   李四   |  20 |  85   |
-|   王五   |  19 |  92   |
-|   赵六   |  20 |  88   |
+|   Tom    |  18 |  90   |
+|   Lucy   |  20 |  85   |
+|   Jack   |  19 |  92   |
+|   Steve  |  20 |  88   |
 
 
 
-现在，我们使用`ORDER BY`关键字来对学生表进行排序：
+Now, let's use the `ORDER BY` keyword to sort the student table:
 
 ```sql
--- SQL 查询语句 1
+-- SQL query statement 1
 select name, age from students order by age asc;
 
--- SQL 查询语句 2
+-- SQL query statement 2
 select name, score from students order by score desc;
 ```
 
 
 
-查询语句 1 结果，按照年龄升序（从小到大）：
+Query statement 1 result, sorted by age in ascending order (from smallest to largest):
 
 |   name   | age |
 |----------|-----|
-|   张三   |  18 |
-|   王五   |  19 |
-|   李四   |  20 |
-|   赵六   |  20 |
+|   Tom    |  18 |
+|   Jack   |  19 |
+|   Lucy   |  20 |
+|   Steve  |  20 |
 
 
 
-查询语句 2 结果，按照分数降序（从大到小）：
+Query statement 2 result, sorted by score in descending order (from largest to smallest):
 
 |   name   | score |
 |----------|-------|
-|   王五   |  92   |
-|   张三   |  90   |
-|   赵六   |  88   |
-|   李四   |  85   |
+|   Jack   |  92   |
+|   Tom    |  90   |
+|   Steve  |  88   |
+|   Lucy   |  85   |
 
 
 
-在排序的基础上，我们还可以根据多个字段的值进行排序。当第一个字段的值相同时，再按照第二个字段的值进行排序，以此类推。
+Based on sorting, we can also sort by multiple fields. When the values of the first field are the same, they are then sorted by the values of the second field, and so on.
 
-示例语法如下：
+Example syntax:
 
 ```sql
-order by 字段1 [升序/降序], 字段2 [升序/降序], ...
+order by field1 [asc/desc], field2 [asc/desc], ...
 ```
 
 
 
-## 题目
-请编写一条 SQL 查询语句，从名为 `student` 的数据表中选择出学生姓名（name）、年龄（age）和成绩（score），首先按照成绩从大到小排序，如果成绩相同，则按照年龄从小到大排序。
+### Exercise
+Please write an SQL query statement to select the student name (name), age (age), and score (score) from the data table named `student`, first sorted by score from highest to lowest, and if scores are the same, then sorted by age from youngest to oldest.
 

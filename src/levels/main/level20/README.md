@@ -1,37 +1,37 @@
-# 查询进阶 - 关联查询 - cross join
+## 20. Advanced Query - Join Query - CROSS JOIN
 
 
-## 教程
-在之前的教程中，我们所有的查询操作都是在单个数据表中进行的。但有时，我们可能希望在单张表的基础上，获取更多额外数据，比如获取学生表中学生所属的班级信息等。这时，就需要使用关联查询。
+### Tutorial
+In previous tutorials, all our query operations were performed on single data tables. But sometimes, we may want to get additional data based on a single table, such as getting the class information for students in the student table. This is where join queries come in.
 
-在 SQL 中，关联查询是一种用于联合多个数据表中的数据的查询方式。
+In SQL, join queries are a way to combine data from multiple data tables.
 
-其中，`CROSS JOIN` 是一种简单的关联查询，不需要任何条件来匹配行，它直接将左表的 **每一行** 与右表的 **每一行** 进行组合，返回的结果是两个表的笛卡尔积。
+Among them, `CROSS JOIN` is a simple join query that doesn't require any conditions to match rows. It directly combines **every row** from the left table with **every row** from the right table, returning the Cartesian product of the two tables.
 
 
 
-## 示例
-假设有一个员工表 `employees`，包含以下字段：`emp_id`（员工编号）、`emp_name`（员工姓名）、`department`（所属部门）、`salary`（工资）。数据如下：
+### Example
+Assume there is an employees table `employees`, containing the following fields: `emp_id` (employee ID), `emp_name` (employee name), `department` (department), `salary` (salary). Data as follows:
 
 | emp_id | emp_name | department | salary |
 |--------|----------|------------|--------|
-| 1      | 小明     | 技术部     | 5000   |
-| 2      | 鸡哥     | 财务部     | 6000   |
-| 3      | 李华     | 销售部     | 4500   |
+| 1      | Tom      | Tech       | 5000   |
+| 2      | James    | Finance    | 6000   |
+| 3      | Lucy     | Sales      | 4500   |
 
 
 
-假设还有一个部门表 `departments`，包含以下字段：`department`（部门名称）、`manager`（部门经理）、`location`（所在地）。数据如下：
+Assume there is also a departments table `departments`, containing the following fields: `department` (department name), `manager` (department manager), `location` (location). Data as follows:
 
 | department | manager | location |
 |------------|---------|----------|
-| 技术部     | 张三    | 上海     |
-| 财务部     | 李四    | 北京     |
-| 销售部     | 王五    | 广州     |
+| Tech       | Mike    | Shanghai |
+| Finance    | Lisa    | Beijing  |
+| Sales      | Jack    | Guangzhou|
 
 
 
-使用 CROSS JOIN 进行关联查询，将员工表和部门表的所有行组合在一起，获取员工姓名、工资、部门名称和部门经理，示例 SQL 代码如下：
+Use CROSS JOIN to perform a join query, combining all rows from the employees table and departments table to get employee name, salary, department name, and department manager. Example SQL code as follows:
 
 ```sql
 SELECT e.emp_name, e.salary, d.department, d.manager
@@ -39,35 +39,36 @@ FROM employees e
 CROSS JOIN departments d;
 ```
 
-上面的 SQL 还可以简化为：
+The above SQL can also be simplified to:
 
 ```sql
 SELECT e.emp_name, e.salary, d.department, d.manager
 FROM employees e, departments d;
 ```
 
-通过逗号分隔表名，隐式地实现了笛卡尔积，是 SQL 早期的写法，功能上与 CROSS JOIN 完全相同。
+By separating table names with commas, the Cartesian product is implicitly implemented. This is an early SQL syntax, functionally identical to CROSS JOIN.
 
-注意，在多表关联查询的 SQL 中，我们最好在选择字段时指定字段所属表的名称（比如 e.emp_name），还可以通过给表起别名（比如 employees e）来简化 SQL 语句。
+Note: In multi-table join queries, it's best to specify the table name when selecting fields (e.g., e.emp_name), and you can simplify SQL statements by giving tables aliases (e.g., employees e).
 
-查询结果：
+Query result:
 
 | emp_name | salary | department | manager |
 |----------|--------|------------|---------|
-| 小明     | 5000   | 技术部     | 张三    |
-| 小明     | 5000   | 财务部     | 李四    |
-| 小明     | 5000   | 销售部     | 王五    |
-| 鸡哥     | 6000   | 技术部     | 张三    |
-| 鸡哥     | 6000   | 财务部     | 李四    |
-| 鸡哥     | 6000   | 销售部     | 王五    |
-| 李华     | 4500   | 技术部     | 张三    |
-| 李华     | 4500   | 财务部     | 李四    |
-| 李华     | 4500   | 销售部     | 王五    |
+| Tom      | 5000   | Tech       | Mike    |
+| Tom      | 5000   | Finance    | Lisa    |
+| Tom      | 5000   | Sales      | Jack    |
+| James    | 6000   | Tech       | Mike    |
+| James    | 6000   | Finance    | Lisa    |
+| James    | 6000   | Sales      | Jack    |
+| Lucy     | 4500   | Tech       | Mike    |
+| Lucy     | 4500   | Finance    | Lisa    |
+| Lucy     | 4500   | Sales      | Jack    |
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student` ，包含以下字段：id（学号）、name（姓名）、age（年龄）、class_id（班级编号）；还有一个班级表 `class` ，包含以下字段：id（班级编号）、name（班级名称）。
+Assume there is a student table `student`, containing the following fields: id (student ID), name (name), age (age), class_id (class ID); there is also a class table `class`, containing the following fields: id (class ID), name (class name).
 
-请你编写一个 SQL 查询，将学生表和班级表的所有行组合在一起，并返回学生姓名（student_name）、学生年龄（student_age）、班级编号（class_id）以及班级名称（class_name）。
+Please write an SQL query to combine all rows from the student table and class table, and return the student name (student_name), student age (student_age), class ID (class_id), and class name (class_name).
+

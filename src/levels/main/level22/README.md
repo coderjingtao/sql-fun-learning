@@ -1,37 +1,37 @@
-# 查询进阶 - 关联查询 - outer join
+## 22. Advanced Query - Join Query - OUTER JOIN
 
-## 教程
+### Tutorial
 
-在 SQL 中，OUTER JOIN 是一种关联查询方式，它根据指定的关联条件，将两个表中满足条件的行组合在一起，并 **包含没有匹配的行** 。
+In SQL, OUTER JOIN is a join query method that combines rows from two tables based on the specified join condition, and **includes unmatched rows**.
 
-在 OUTER JOIN 中，包括 LEFT OUTER JOIN 和 RIGHT OUTER JOIN 两种类型，它们分别表示查询左表和右表的所有行（即使没有被匹配），再加上满足条件的交集部分。
+In OUTER JOIN, there are two types: LEFT OUTER JOIN and RIGHT OUTER JOIN. They respectively return all rows from the left table and right table (even if not matched), plus the intersection of rows that satisfy the condition.
 
 
 
-## 示例
+### Example
 
-假设有一个员工表 `employees`，包含以下字段：`emp_id`（员工编号）、`emp_name`（员工姓名）、`department`（所属部门）、`salary`（工资）。数据如下：
+Assume there is an employees table `employees`, containing the following fields: `emp_id` (employee ID), `emp_name` (employee name), `department` (department), `salary` (salary). Data as follows:
 
 | emp_id | emp_name | department | salary |
 | ------ | -------- | ---------- | ------ |
-| 1      | 小明     | 技术部     | 5000   |
-| 2      | 鸡哥     | 财务部     | 6000   |
-| 3      | 李华     | 销售部     | 4500   |
+| 1      | Tom      | Tech       | 5000   |
+| 2      | James    | Finance    | 6000   |
+| 3      | Lucy     | Sales      | 4500   |
 
 
 
-假设还有一个部门表 `departments`，包含以下字段：`department`（部门名称）、`manager`（部门经理）、`location`（所在地）。数据如下：
+Assume there is also a departments table `departments`, containing the following fields: `department` (department name), `manager` (department manager), `location` (location). Data as follows:
 
-| department | manager | location |
-| ---------- | ------- | -------- |
-| 技术部     | 张三    | 上海     |
-| 财务部     | 李四    | 北京     |
-| 人事部     | 王五    | 广州     |
-| 摸鱼部     | 赵二    | 吐鲁番   |
+| department | manager | location  |
+| ---------- | ------- | --------- |
+| Tech       | Mike    | NewYork   |
+| Finance    | Lisa    | Paris     |
+| HR         | Jack    | London    |
+| Slack      | David   | Melbourne |
 
 
 
-使用 LEFT JOIN 进行关联查询，根据员工表和部门表之间的部门名称进行匹配，将员工的姓名、工资以及所属部门和部门经理组合在一起，并包含所有员工的信息：
+Use LEFT JOIN to perform a join query, matching based on the department name between the employees table and departments table, combining employee name, salary, department, and department manager, and including all employee information:
 
 ```sql
 SELECT e.emp_name, e.salary, e.department, d.manager
@@ -41,27 +41,28 @@ LEFT JOIN departments d ON e.department = d.department;
 
 
 
-查询结果：
+Query result:
 
 | emp_name | salary | department | manager |
 |----------|--------|------------|---------|
-| 小明     | 5000   | 技术部     | 张三    |
-| 鸡哥     | 6000   | 财务部     | 李四    |
-| 李华     | 4500   | 销售部     | NULL    |
+| Tom      | 5000   | Tech       | Mike    |
+| James    | 6000   | Finance    | Lisa    |
+| Lucy     | 4500   | Sales      | NULL    |
 
 
 
-关注下表格的最后一条数据，李华所属的销售部并没有在部门表中，但仍然返回在了结果集中，manager 为 NULL。
+Notice the last row in the table - Lucy's Sales department doesn't exist in the departments table, but it's still returned in the result set with manager as NULL.
 
-有些数据库并不支持 RIGHT JOIN 语法，那么如何实现 RIGHT JOIN 呢？
+Some databases don't support RIGHT JOIN syntax, so how can we implement RIGHT JOIN?
 
-其实只需要把主表（from 后面的表）和关联表（LEFT JOIN 后面的表）顺序进行调换即可！
+Actually, you just need to swap the order of the main table (after FROM) and the joined table (after LEFT JOIN)!
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student`，包含以下字段：`id`（学号）、`name`（姓名）、`age`（年龄）、`class_id`（班级编号）。还有一个班级表 `class`，包含以下字段：`id`（班级编号）、`name`（班级名称）、`level`（班级级别）。
+Assume there is a student table `student`, containing the following fields: `id` (student ID), `name` (name), `age` (age), `class_id` (class ID). There is also a class table `class`, containing the following fields: `id` (class ID), `name` (class name), `level` (class level).
 
-请你编写一个 SQL 查询，根据学生表和班级表之间的班级编号进行匹配，返回学生姓名（`student_name`）、学生年龄（`student_age`）、班级编号（`class_id`）、班级名称（`class_name`）、班级级别（`class_level`），要求必须返回所有学生的信息（即使对应的班级编号不存在）。
+Please write an SQL query to match based on the class ID between the student table and class table, returning student name (`student_name`), student age (`student_age`), class ID (`class_id`), class name (`class_name`), class level (`class_level`). The query must return all student information (even if the corresponding class ID doesn't exist).
+
 

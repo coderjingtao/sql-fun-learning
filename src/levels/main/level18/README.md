@@ -1,17 +1,17 @@
-# 分组聚合 - 多字段分组
+## 18. Grouping & Aggregation - Multi-Field Grouping
 
 
-## 教程
-有时，单字段分组并不能满足我们的需求，比如想统计学校里每个班级参加每场考试的学生情况，这时就可以使用多字段分组。
+### Tutorial
+Sometimes, single-field grouping cannot meet our needs. For example, if we want to count the student participation in each exam for each class in a school, we can use multi-field grouping.
 
-多字段分组和单字段分组的实现方式几乎一致，使用 `GROUP BY` 语法即可。
+The implementation of multi-field grouping is almost identical to single-field grouping, just use the `GROUP BY` syntax.
 
 
 
-## 示例
-假设有一个订单表 `orders`，包含以下字段：`order_id`（订单号）、`product_id`（商品编号）、`customer_id`（客户编号）、`amount`（订单金额）。
+### Example
+Assume there is an orders table `orders`, containing the following fields: `order_id`, `product_id`, `customer_id`, `amount`.
 
-数据如下：
+Data as follows:
 
 | order_id | product_id | customer_id | amount |
 |---------|-------------|--------|---------|
@@ -23,10 +23,10 @@
 
 
 
-要查询使用多字段分组查询表中 **每个客户** 购买的 **每种商品** 的总金额，相当于按照客户编号和商品编号分组：
+To query the total amount of **each product** purchased by **each customer** in the table using multi-field grouping, this is equivalent to grouping by customer ID and product ID:
 
 ```sql
--- 查询每个用户购买的每种商品的总金额，按照客户编号和商品编号分组
+-- Query the total amount of each product purchased by each user, grouped by customer ID and product ID
 SELECT customer_id, product_id, SUM(amount) AS total_amount
 FROM orders
 GROUP BY customer_id, product_id;
@@ -34,7 +34,7 @@ GROUP BY customer_id, product_id;
 
 
 
-查询结果：
+Query result:
 
 | customer_id | product_id | total_amount |
 | ----------- | ---------- | ------------ |
@@ -45,7 +45,7 @@ GROUP BY customer_id, product_id;
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student`，包含以下字段：`id`（学号）、`name`（姓名）、`class_id`（班级编号）、`exam_num`（考试编号）、`score`（成绩）。请你编写一个 SQL 查询，统计学生表中的班级编号（class_id），考试编号（exam_num）和每个班级参加每场考试的总学生人数（total_num）。
+Assume there is a student table `student`, containing the following fields: `id` (student ID), `name` (name), `class_id` (class ID), `exam_num` (exam number), `score` (score). Please write an SQL query to count the class ID (class_id), exam number (exam_num), and the total number of students participating in each exam for each class (total_num) in the student table.
 

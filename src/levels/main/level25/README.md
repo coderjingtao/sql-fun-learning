@@ -1,45 +1,43 @@
+## 25. Advanced Query - Combination Query
 
+### Tutorial
+In SQL, combination query is a query operation that merges the results of multiple SELECT queries together.
 
-# 查询进阶 - 组合查询
+There are two common combination query operations: UNION and UNION ALL.
 
-## 教程
-在 SQL 中，组合查询是一种将多个 SELECT 查询结果合并在一起的查询操作。
+1. UNION operation: It is used to merge the result sets of two or more queries, **and removes duplicate rows**. That is, if two queries have the same rows, only one row is kept.
 
-包括两种常见的组合查询操作：UNION 和 UNION ALL。
-
-1. UNION 操作：它用于将两个或多个查询的结果集合并， **并去除重复的行** 。即如果两个查询的结果有相同的行，则只保留一行。
-
-2. UNION ALL 操作：它也用于将两个或多个查询的结果集合并， **但不去除重复的行** 。即如果两个查询的结果有相同的行，则全部保留。
-
-
-
-## 示例
-假设我们有以下两个数据表：`table1` 和 `table2`，分别包含不同部门的员工信息。
-
-table1 表：
-
-| emp_id | name     | age | department |
-|--------|----------|-----|------------|
-| 101    | Alice    | 25  | HR         |
-| 102    | Bob      | 28  | Finance    |
-| 103    | Charlie  | 22  | IT         |
+2. UNION ALL operation: It is also used to merge the result sets of two or more queries, **but does not remove duplicate rows**. That is, if two queries have the same rows, all are kept.
 
 
 
-table2 表：
+### Example
+Assume we have the following two data tables: `table1` and `table2`, containing employee information from different departments.
 
-| emp_id | name  | age  | department |
-| ------ | ----- | ---- | ---------- |
-| 101    | Alice | 25   | HR         |
-| 201    | David | 27   | Finance    |
-| 202    | Eve   | 24   | HR         |
-| 203    | Frank | 26   | IT         |
+table1 table:
+
+| emp_id | name    | age | department |
+|--------|---------|-----|------------|
+| 101    | Alice   | 25  | HR         |
+| 102    | Bob     | 28  | Finance    |
+| 103    | Charlie | 22  | IT         |
 
 
 
-现在，我们想要合并这两张表的数据，分别执行 UNION 操作和 UNION ALL 操作。
+table2 table:
 
-UNION 操作：
+| emp_id | name  | age | department |
+| ------ | ----- | --- | ---------- |
+| 101    | Alice | 25  | HR         |
+| 201    | David | 27  | Finance    |
+| 202    | Eve   | 24  | HR         |
+| 203    | Frank | 26  | IT         |
+
+
+
+Now, we want to merge the data from these two tables, executing UNION operation and UNION ALL operation respectively.
+
+UNION operation:
 
 ```sql
 SELECT name, age, department
@@ -51,7 +49,7 @@ FROM table2;
 
 
 
-UNION 操作的结果，去除了重复的行（名称为 Alice）：
+UNION operation result, duplicate rows removed (name Alice):
 
 | name    | age | department |
 |---------|-----|------------|
@@ -64,10 +62,10 @@ UNION 操作的结果，去除了重复的行（名称为 Alice）：
 
 
 
-UNION ALL 操作：
+UNION ALL operation:
 
 ```sql
--- UNION ALL操作
+-- UNION ALL operation
 SELECT name, age, department
 FROM table1
 UNION ALL
@@ -77,23 +75,23 @@ FROM table2;
 
 
 
-结果如下，保留了重复的行：
+Result as follows, duplicate rows retained:
 
-| name    | age  | department |
-| ------- | ---- | ---------- |
-| Alice   | 25   | HR         |
-| Bob     | 28   | Finance    |
-| Charlie | 22   | IT         |
-| Alice   | 25   | HR         |
-| David   | 27   | Finance    |
-| Eve     | 24   | HR         |
-| Frank   | 26   | IT         |
+| name    | age | department |
+| ------- | --- | ---------- |
+| Alice   | 25  | HR         |
+| Bob     | 28  | Finance    |
+| Charlie | 22  | IT         |
+| Alice   | 25  | HR         |
+| David   | 27  | Finance    |
+| Eve     | 24  | HR         |
+| Frank   | 26  | IT         |
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student`，包含以下字段：`id`（学号）、`name`（姓名）、`age`（年龄）、`score`（分数）、`class_id`（班级编号）。还有一个新学生表 `student_new`，包含的字段和学生表完全一致。
+Assume there is a student table `student`, containing the following fields: `id` (student ID), `name` (name), `age` (age), `score` (score), `class_id` (class ID). There is also a new student table `student_new`, with exactly the same fields as the student table.
 
-请编写一条 SQL 语句，获取所有学生表和新学生表的学生姓名（`name`）、年龄（`age`）、分数（`score`）、班级编号（`class_id`）字段，要求保留重复的学生记录。
+Please write an SQL statement to get the student name (`name`), age (`age`), score (`score`), class ID (`class_id`) fields from both the student table and new student table, keeping duplicate student records.
 

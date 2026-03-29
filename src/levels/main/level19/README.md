@@ -1,14 +1,14 @@
-# 分组聚合 - having 子句
+## 19. Grouping & Aggregation - HAVING Clause
 
-## 教程
-在 SQL 中，HAVING 子句用于在分组聚合后对分组进行过滤。它允许我们对分组后的结果进行条件筛选，只保留满足特定条件的分组。
+### Tutorial
+In SQL, the HAVING clause is used to filter groups after grouping and aggregation. It allows us to conditionally filter the grouped results, keeping only the groups that meet specific conditions.
 
-HAVING 子句与条件查询 WHERE 子句的区别在于，WHERE 子句用于在 **分组之前** 进行过滤，而 HAVING 子句用于在 **分组之后** 进行过滤。
+The difference between the HAVING clause and the WHERE clause is that the WHERE clause is used to filter **before grouping**, while the HAVING clause is used to filter **after grouping**.
 
 
 
-## 示例
-假设有一个订单表 `orders`，包含以下字段：`order_id`（订单号）、`customer_id`（客户编号）、`amount`（订单金额）。数据如下：
+### Example
+Assume there is an orders table `orders`, containing the following fields: `order_id`, `customer_id`, `amount`. Data as follows:
 
 | order_id | customer_id | amount |
 |---------|-------------|--------|
@@ -19,7 +19,7 @@ HAVING 子句与条件查询 WHERE 子句的区别在于，WHERE 子句用于在
 
 
 
-1）使用 HAVING 子句查询订单数超过 1 的客户：
+1) Use the HAVING clause to query customers with more than 1 order:
 
 ```sql
 SELECT customer_id, COUNT(order_id) AS order_num
@@ -28,7 +28,7 @@ GROUP BY customer_id
 HAVING COUNT(order_id) > 1;
 ```
 
-查询结果：
+Query result:
 
 | customer_id | order_num |
 | ----------- | --------- |
@@ -36,17 +36,17 @@ HAVING COUNT(order_id) > 1;
 
 
 
-2）使用 HAVING 子句查询订单总金额超过 100 的客户：
+2) Use the HAVING clause to query customers with total order amount exceeding 100:
 
 ```sql
--- 查询订单总金额超过100的客户
+-- Query customers with total order amount exceeding 100
 SELECT customer_id, SUM(amount) AS total_amount
 FROM orders
 GROUP BY customer_id
 HAVING SUM(amount) > 100;
 ```
 
-查询结果：
+Query result:
 
 | customer_id | total_amount |
 | ----------- | ------------ |
@@ -55,6 +55,7 @@ HAVING SUM(amount) > 100;
 
 
 
-## 题目
+### Exercise
 
-假设有一个学生表 `student`，包含以下字段：`id`（学号）、`name`（姓名）、`class_id`（班级编号）、`score`（成绩）。请你编写一个 SQL 查询，统计学生表中班级的总成绩超过 150 分的班级编号（class_id）和总成绩（total_score）。
+Assume there is a student table `student`, containing the following fields: `id` (student ID), `name` (name), `class_id` (class ID), `score` (score). Please write an SQL query to count the class ID (class_id) and total score (total_score) of classes in the student table where the class total score exceeds 150.
+

@@ -10,25 +10,25 @@ create table if not exists `student`
 );
 
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('鸡哥', 25, 1, 2.5, 1);
+values ('James', 25, 1, 2.5, 1);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('鱼皮', 18, 1, 400, 4);
+values ('Emma', 18, 1, 400, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('热dog', 40, 2, 600, 4);
+values ('Michael', 40, 2, 600, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('摸FISH', null, 2, 360, 4);
+values ('Sarah', null, 2, 360, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('李阿巴', 19, 3, 120, 2);
+values ('David', 19, 3, 120, 2);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('老李', 56, 3, 500, 4);
+values ('Robert', 56, 3, 500, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('李变量', 24, 4, 390, 3);
+values ('Jennifer', 24, 4, 390, 3);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('王加瓦', 23, 4, 0, 4);
+values ('William', 23, 4, 0, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('赵派森', 80, 4, 600, 4);
+values ('Elizabeth', 80, 4, 600, 4);
 insert into `student` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('孙加加', 60, 5, 100.5, 1);
+values ('John', 60, 5, 100.5, 1);
 
 -- `student_new`
 create table if not exists `student_new`
@@ -42,10 +42,10 @@ create table if not exists `student_new`
 );
 
 insert into `student_new` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('新学生1', 20, 1, 120, 1);
+values ('Lucy', 20, 1, 120, 1);
 insert into `student_new` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('新学生2', 21, 2, 180, 2);
+values ('Bob', 21, 2, 180, 2);
 insert into `student_new` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('鸡哥', 25, 1, 2.5, 1);
+values ('James', 25, 1, 2.5, 1);
 insert into `student_new` (`name`, `age`, `class_id`, `score`, `exam_num`)
-values ('鱼皮', 18, 1, 400, 4);
+values ('Emma', 18, 1, 400, 4);
