@@ -1,12 +1,12 @@
-import { defineStore } from "pinia";
-import { allLevels } from "../levels";
+import { defineStore } from 'pinia';
+import { allLevels } from '../levels';
 
 /**
  * 全局状态存储
  *
- * @author yupi
+ * @author Jingtao Liu
  */
-export const useGlobalStore = defineStore("global", {
+export const useGlobalStore = defineStore('global', {
   state: () => ({
     // 学习记录
     studyHistoryList: [],
@@ -16,13 +16,13 @@ export const useGlobalStore = defineStore("global", {
   getters: {},
   // 持久化
   persist: {
-    key: "global",
+    key: 'global',
     storage: window.localStorage,
     beforeRestore: (context) => {
-      console.log("load globalStore data start");
+      console.log('load globalStore data start');
     },
     afterRestore: (context) => {
-      console.log("load globalStore data end");
+      console.log('load globalStore data end');
     },
   },
   actions: {

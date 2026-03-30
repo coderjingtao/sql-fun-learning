@@ -1,9 +1,9 @@
-import initSqlJs, { Database, SqlJsStatic } from "sql.js";
+import initSqlJs, { Database, SqlJsStatic } from 'sql.js';
 
 /**
  * SQL 执行器
  *
- * @author coder_yupi https://github.com/liyupi
+ * @author Jingtao Liu
  */
 let SQL: SqlJsStatic;
 
@@ -19,7 +19,7 @@ export const initDB = async (initSql?: string) => {
   if (!SQL) {
     SQL = await initSqlJs({
       // Required to load the wasm binary asynchronously
-      locateFile: () => "./sql-wasm.wasm",
+      locateFile: () => './sql-wasm.wasm',
     });
   }
   // Create a database

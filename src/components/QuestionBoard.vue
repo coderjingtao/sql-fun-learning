@@ -28,16 +28,35 @@
       </div>
     </a-card>
     <a-card v-else>Level loading failed</a-card>
+
+    <!-- Completion Modal -->
+    <a-modal
+      v-model:visible="showWinModal"
+      :footer="null"
+      :closable="true"
+      centered
+      width="400px"
+    >
+      <div class="win-modal-content">
+        <div class="win-icon">🎉</div>
+        <h2 class="win-title">Congratulations!</h2>
+        <p class="win-message">You have completed all the basic learning stages!</p>
+        <a-button type="primary" @click="closeWinModal"
+          >Continue Exploring Advanced Challenges</a-button
+        >
+      </div>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, watch } from "vue";
-import mainLevels from "../levels/mainLevels";
-import { getCurrentLevelNum, getNextLevel, getPrevLevel } from "../levels";
-import { useRouter } from "vue-router";
-import { RESULT_STATUS_ENUM } from "../core/result";
-import MdViewer from "./MdViewer.vue";
+import { computed, ref, toRefs, watch } from 'vue';
+import mainLevels from '../levels/mainLevels';
+import { getCurrentLevelNum, getNextLevel, getPrevLevel } from '../levels';
+import { useRouter } from 'vue-router';
+import { RESULT_STATUS_ENUM } from '../core/result';
+import MdViewer from './MdViewer.vue';
+import confetti from 'canvas-confetti';
 
 interface Props {
   level: LevelType;
@@ -58,7 +77,7 @@ watch([levelNum], () => {
   scrollTo({
     top: 0,
   });
-  const questionCardDom = document.getElementById("questionCard");
+  const questionCardDom = document.getElementById('questionCard');
   if (questionCardDom) {
     questionCardDom.scrollTop = 0;
   }
@@ -67,9 +86,42 @@ watch([levelNum], () => {
 /**
  * Complete all levels
  */
+const showWinModal = ref(false);
+
 const doWin = () => {
-  alert("Congratulations! If you found this helpful, please give us a star~");
-  window.open("https://github.com/liyupi/sql-mother");
+  showWinModal.value = true;
+  // Trigger confetti effect
+  const duration = 3000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+  const randomInRange = (min: number, max: number) => {
+    return Math.random() * (max - min) + min;
+  };
+
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+    });
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+    });
+  }, 250);
+};
+
+const closeWinModal = () => {
+  showWinModal.value = false;
 };
 
 /**
@@ -98,5 +150,26 @@ const toNextLevel = () => {
   max-height: calc(100vh - 100px);
   min-height: 600px;
   overflow-y: auto;
+}
+
+.win-modal-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.win-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.win-title {
+  color: #1890ff;
+  margin-bottom: 12px;
+}
+
+.win-message {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 24px;
 }
 </style>

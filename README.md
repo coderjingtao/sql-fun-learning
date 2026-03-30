@@ -18,7 +18,7 @@ First, SQL knowledge is extremely important - it's an essential skill for progra
 
 For learning SQL, hands-on practice is more effective than just reading tutorials. While there are similar SQL learning websites online, they are either paid or not well-structured.
 
-So Yupi decided to create an open-source SQL learning platform, hoping to help everyone learn SQL more easily. At the same time, the project code can provide inspiration for others, encouraging more people to participate and contribute!
+So I decided to create an open-source SQL learning platform, hoping to help everyone learn SQL more easily. At the same time, the project code can provide inspiration for others, encouraging more people to participate and contribute!
 
 ## Learn to Use in 20 Seconds
 
@@ -129,11 +129,6 @@ The core code is in `src/core/sqlExecutor.ts`, defining two functions for initia
 ```ts
 import initSqlJs, { Database, SqlJsStatic } from 'sql.js';
 
-/**
- * SQL Executor
- *
- * @author coder_yupi https://github.com/liyupi
- */
 let SQL: SqlJsStatic;
 
 /**

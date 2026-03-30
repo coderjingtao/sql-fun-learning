@@ -12,6 +12,7 @@
     "@bytemd/plugin-highlight": "^1.21.0",
     "@bytemd/vue-next": "^1.21.0",
     "ant-design-vue": "^3.2.11",
+    "canvas-confetti": "^1.9.4",
     "github-markdown-css": "^5.2.0",
     "lodash": "^4.17.21",
     "monaco-editor": "^0.34.0",
@@ -23,6 +24,7 @@
     "vue-router": "4"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
     "@types/sql.js": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
