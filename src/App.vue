@@ -63,7 +63,7 @@
       </p>
       <p>
         SQL fun learning ©{{ currentYear }} by
-        <a href="https://github.com/coderjingtao" target="_blank"
+        <a href="https://www.linkedin.com/in/jingtaojosephliu/" target="_blank"
           >Jingtao Liu</a
         >
       </p>
