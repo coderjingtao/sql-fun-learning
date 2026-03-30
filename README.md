@@ -4,7 +4,7 @@
 >
 > By [Jingtao Liu](https://www.linkedin.com/in/jingtaojosephliu/)
 
-Live Demo: [placeholder]
+Live Demo: https://sql.coder.qzz.io
 
 ## Project Introduction
 
