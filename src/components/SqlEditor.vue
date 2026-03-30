@@ -7,7 +7,9 @@
       </a-button>
       <a-button @click="doFormat">Format</a-button>
       <a-button @click="doReset">Reset</a-button>
-      <a-tag :color="statusColor" class="status-pill">{{ statusText }}</a-tag>
+      <a-tag :color="statusColor" class="status-pill" :bordered="false">
+        {{ statusText }}
+      </a-tag>
     </a-space>
   </div>
 </template>
@@ -168,9 +170,11 @@ onUnmounted(() => {
 <style scoped>
 .status-pill {
   border-radius: 999px;
-  padding: 4px 12px;
+  padding: 2px 10px;
   font-weight: 600;
+  font-size: 12px;
   letter-spacing: 0.2px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  border: 1px solid transparent;
 }
 </style>

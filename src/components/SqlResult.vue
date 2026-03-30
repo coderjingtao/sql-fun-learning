@@ -5,7 +5,13 @@
     :bordered="false"
   >
     <sql-result-table v-if="!errorMsg" :result="result" />
-    <div v-else>❌ Statement Error: {{ errorMsg }}</div>
+    <a-alert
+      v-else
+      type="error"
+      show-icon
+      message="Statement Error"
+      :description="errorMsg"
+    />
   </a-card>
 </template>
 

@@ -67,23 +67,25 @@ const getDifficultyText = (difficulty?: number) => {
 
 /* Page Title */
 .page-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 24px;
-  padding: 16px;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0b4a7a 100%);
-  border-radius: 8px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 
 .page-title {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .page-description {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
   margin: 0;
 }
 
@@ -107,12 +109,12 @@ const getDifficultyText = (difficulty?: number) => {
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 .level-card:hover {
@@ -189,19 +191,6 @@ const getDifficultyText = (difficulty?: number) => {
 
   .level-action {
     margin-left: 8px;
-  }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .level-card {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
-  }
-
-  .level-title {
-    color: #f9fafb;
   }
 }
 

@@ -51,7 +51,7 @@
               style="cursor: pointer; display: inline-block; width: 100%"
             >
               <user-outlined />
-              About
+              About Author
             </span>
           </a-menu-item>
         </a-menu>
@@ -139,8 +139,13 @@ const doClickMenu = ({ key }: any) => {
 
 <style scoped>
 .header {
-  border-bottom: 1px solid #f0f0f0;
-  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  padding: 4px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
 }
 
 .ant-menu-horizontal {
@@ -148,24 +153,29 @@ const doClickMenu = ({ key }: any) => {
 }
 
 .logo {
-  width: 56px;
+  width: 48px;
 }
 
 .title {
   margin-left: 8px;
   font-size: 20px;
-  color: #000;
+  font-weight: 700;
+  color: var(--text);
   white-space: nowrap;
 }
 
 .content {
-  padding: 24px;
+  padding: 28px 24px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .footer {
-  padding: 12px;
+  padding: 16px 12px 24px;
   text-align: center;
-  background: #efefef;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: transparent;
 
   p {
     margin-bottom: 4px;
