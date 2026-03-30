@@ -16,9 +16,22 @@
           :style="{ lineHeight: '64px' }"
           @click="doClickMenu"
         >
-          <a-menu-item key="/learn">Learn</a-menu-item>
-          <a-menu-item key="/levels">Levels</a-menu-item>
-          <a-menu-item key="/playground">Playground</a-menu-item>
+          <a-menu-item key="/learn">
+            <BookOutlined />
+            Progressive Learning
+          </a-menu-item>
+          <a-menu-item key="/basic-learning">
+            <ReadOutlined />
+            Basic Learning
+          </a-menu-item>
+          <a-menu-item key="/challenge-learning">
+            <TrophyOutlined />
+            Challenge Learning
+          </a-menu-item>
+          <a-menu-item key="/playground">
+            <CodeOutlined />
+            Playground
+          </a-menu-item>
           <a-menu-item>
             <a href="https://aus-hub.vercel.app/" target="_blank">
               <a-badge
@@ -80,14 +93,31 @@ import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import {
   BookOutlined,
+  CodeOutlined,
   GlobalOutlined,
+  ReadOutlined,
+  TrophyOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue';
 import AboutAuthorModal from './components/AboutAuthorModal.vue';
 
 const route = useRoute();
 const router = useRouter();
-const selectedKeys = computed(() => [route.path]);
+const selectedKeys = computed(() => {
+  if (route.path.startsWith('/learn')) {
+    return ['/learn'];
+  }
+  if (route.path.startsWith('/basic-learning')) {
+    return ['/basic-learning'];
+  }
+  if (route.path.startsWith('/challenge-learning')) {
+    return ['/challenge-learning'];
+  }
+  if (route.path.startsWith('/playground')) {
+    return ['/playground'];
+  }
+  return [route.path];
+});
 
 // Get current year
 const currentYear = computed(() => new Date().getFullYear());

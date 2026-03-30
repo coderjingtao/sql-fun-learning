@@ -39,10 +39,10 @@
     >
       <div class="win-modal-content">
         <div class="win-icon">🎉</div>
-        <h2 class="win-title">Congratulations!</h2>
-        <p class="win-message">You have completed all the basic learning stages!</p>
-        <a-button type="primary" @click="closeWinModal"
-          >Continue Exploring Advanced Challenges</a-button
+        <h2 class="win-title">Basic Learning Completed!</h2>
+        <p class="win-message">You have completed the foundations track. Ready for advanced challenges.</p>
+        <a-button type="primary" @click="goToChallengeLearning"
+          >Go to Challenge Learning</a-button
         >
       </div>
     </a-modal>
@@ -120,8 +120,9 @@ const doWin = () => {
   }, 250);
 };
 
-const closeWinModal = () => {
+const goToChallengeLearning = () => {
   showWinModal.value = false;
+  router.push('/challenge-learning');
 };
 
 /**

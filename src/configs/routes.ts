@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import IndexPage from "../pages/IndexPage.vue";
-import LevelsPage from "../pages/LevelsPage.vue";
+import BasicLearningPage from "../pages/BasicLearningPage.vue";
+import ChallengeLearningPage from "../pages/ChallengeLearningPage.vue";
 import PlaygroundPage from "../pages/PlaygroundPage.vue";
 
 /**
@@ -19,8 +20,16 @@ export default [
     props: true,
   },
   {
+    path: "/basic-learning",
+    component: BasicLearningPage,
+  },
+  {
+    path: "/challenge-learning",
+    component: ChallengeLearningPage,
+  },
+  {
     path: "/levels",
-    component: LevelsPage,
+    redirect: "/basic-learning",
   },
   {
     path: "/playground",

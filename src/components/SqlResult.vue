@@ -2,7 +2,6 @@
   <a-card
     id="sqlResult"
     title="Execution Result"
-    :extra="RESULT_STATUS_INFO_MAP[resultStatus]"
     :bordered="false"
     style="max-height: 420px; overflow-y: auto"
   >
@@ -15,7 +14,6 @@
 import { toRefs } from "vue";
 import { QueryExecResult } from "sql.js";
 import SqlResultTable from "./SqlResultTable.vue";
-import { RESULT_STATUS_INFO_MAP } from "../core/result";
 
 interface Props {
   result: QueryExecResult[];

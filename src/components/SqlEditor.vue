@@ -7,6 +7,7 @@
       </a-button>
       <a-button @click="doFormat">Format</a-button>
       <a-button @click="doReset">Reset</a-button>
+      <a-tag :color="statusColor" class="status-pill">{{ statusText }}</a-tag>
     </a-space>
   </div>
 </template>
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 import {
   CSSProperties,
+  computed,
   onMounted,
   onUnmounted,
   ref,
@@ -26,6 +28,7 @@ import { format } from "sql-formatter";
 import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
 import { initDB, runSQL } from "../core/sqlExecutor";
 import { QueryExecResult } from "sql.js";
+import { RESULT_STATUS_ENUM, RESULT_STATUS_INFO_MAP } from "../core/result";
 // eslint-disable-next-line no-undef
 import IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor;
 import { message } from "ant-design-vue";
@@ -50,10 +53,26 @@ interface SqlEditorProps {
 }
 
 const props = withDefaults(defineProps<SqlEditorProps>(), {});
-const { level, onSubmit } = toRefs(props);
+const { level, onSubmit, resultStatus } = toRefs(props);
 const inputEditor = ref<IStandaloneCodeEditor>();
 const editorRef = ref<HTMLElement>();
 const db = ref();
+
+const statusText = computed(() => {
+  const key = String(resultStatus.value ?? RESULT_STATUS_ENUM.DEFAULT);
+  return RESULT_STATUS_INFO_MAP[key] ?? RESULT_STATUS_INFO_MAP["-1"];
+});
+
+const statusColor = computed(() => {
+  switch (resultStatus.value) {
+    case RESULT_STATUS_ENUM.SUCCEED:
+      return "green";
+    case RESULT_STATUS_ENUM.ERROR:
+      return "red";
+    default:
+      return "default";
+  }
+});
 
 watchEffect(async () => {
   // Initialize / Update default SQL
@@ -146,4 +165,12 @@ onUnmounted(() => {
 });
 </script>
 
-<style></style>
+<style scoped>
+.status-pill {
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
