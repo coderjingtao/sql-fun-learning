@@ -11,21 +11,15 @@
           :result-status="resultStatus"
           :on-submit="onSubmit"
         />
+        <sql-result
+          :level="level"
+          :result="result"
+          :result-status="resultStatus"
+          :answer-result="answerResult"
+          :error-msg="errorMsgRef"
+          style="margin-top: 16px"
+        />
         <a-collapse v-model:active-key="activeKeys" style="margin-top: 16px">
-          <a-collapse-panel
-            key="result"
-            header="View Results"
-            class="result-collapse-panel"
-          >
-            <sql-result
-              :level="level"
-              :result="result"
-              :result-status="resultStatus"
-              :answer-result="answerResult"
-              :error-msg="errorMsgRef"
-              style="margin-top: 16px"
-            />
-          </a-collapse-panel>
           <a-collapse-panel v-if="level.hint" key="hint" header="View Hint">
             <p>{{ level.hint }}</p>
           </a-collapse-panel>
@@ -77,7 +71,7 @@ const result = ref<QueryExecResult[]>([]);
 const answerResult = ref<QueryExecResult[]>([]);
 const errorMsgRef = ref<string>();
 const resultStatus = ref<number>(-1);
-const defaultActiveKeys = ["result"];
+const defaultActiveKeys: string[] = [];
 const activeKeys = ref([...defaultActiveKeys]);
 
 /**
@@ -112,8 +106,4 @@ const highlightCode = (code: string) => {
 
 </script>
 
-<style>
-.result-collapse-panel .ant-collapse-content-box {
-  padding: 0 !important;
-}
-</style>
+<style></style>

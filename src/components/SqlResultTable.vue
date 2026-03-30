@@ -5,6 +5,7 @@
     :data-source="resultData"
     size="middle"
     :pagination="{ hideOnSinglePage: true, pageSize: 20 }"
+    :scroll="{ x: 'max-content' }"
   />
 </template>
 

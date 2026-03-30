@@ -3,7 +3,6 @@
     id="sqlResult"
     title="Execution Result"
     :bordered="false"
-    style="max-height: 420px; overflow-y: auto"
   >
     <sql-result-table v-if="!errorMsg" :result="result" />
     <div v-else>❌ Statement Error: {{ errorMsg }}</div>

@@ -148,9 +148,7 @@ const toNextLevel = () => {
 
 <style>
 #questionBoard #questionCard {
-  max-height: calc(100vh - 100px);
-  min-height: 600px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .win-modal-content {

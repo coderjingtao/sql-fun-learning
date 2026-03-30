@@ -192,33 +192,6 @@ const getDifficultyText = (difficulty?: number) => {
   }
 }
 
-/* Large Screen Optimization */
-@media (min-width: 1200px) {
-  .level-grid {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: 8px;
-  }
-
-  .level-grid::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .level-grid::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 2px;
-  }
-
-  .level-grid::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 2px;
-  }
-
-  .level-grid::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-  }
-}
-
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
   .level-card {
