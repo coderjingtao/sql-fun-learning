@@ -27,8 +27,8 @@
       </div>
 
       <p class="author-desc">
-        A tech blogger who enjoys communicating and exchanging ideas with others
-        in the world of programming.
+        A tech enthusiast who loves connecting with fellow programmers to
+        exchange ideas and discuss the latest in technology.
       </p>
 
       <div class="qrcode-section">
